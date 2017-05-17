@@ -18,4 +18,6 @@ instance/
 venv/
 ENV/
 
+*.log
+
 
