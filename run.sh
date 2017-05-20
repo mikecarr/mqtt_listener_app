@@ -1,6 +1,8 @@
 #!/bin/sh
 
-DIR=/home/pi/workspace/mqtt_listener_app
 
-cd $DIR
-python mqtt_listener
+APP_DIR=/home/pi/workspace/mqtt_listener_app
+
+cd $APP_DIR
+
+./run.py

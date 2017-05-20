@@ -1,11 +1,11 @@
-appdirs==1.4.0
+Flask==0.12.2
+-e git+https://github.com/MrLeeh/Flask-MQTT.git@9751891f02ba7958719e3e35138c46d6e166805b#egg=Flask_MQTT-origin/HEAD
+Jinja2==2.9.6
+MarkupSafe==1.0
+RPi.GPIO==0.6.3
+Werkzeug==0.12.2
 click==6.7
-Flask==0.12
 itsdangerous==0.24
-Jinja2==2.9.5
-MarkupSafe==0.23
-packaging==16.8
-paho-mqtt==1.2
-pyparsing==2.1.10
-six==1.10.0
-Werkzeug==0.11.15
+paho-mqtt==1.2.3
+rpi-rf==0.9.6
+typing==3.6.1

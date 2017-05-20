@@ -1,27 +1,23 @@
 from flask import Flask, make_response, jsonify, abort
-from mqtt import MqttListener
 import logging
 from logging.handlers import RotatingFileHandler
 import signal
 import sys
 
-mk2_printer_power_topic = 'home/garage/printer/mk2/power'
-mk2_printer_light_topic = 'home/garage/printer/mk2/light/power'
-mk2s_printer_power_topic = 'home/garage/printer/mk2s/power'
-mk2s_printer_light_topic = 'home/garage/printer/mk2s/light/power'
 app_name = 'mqtt_listener_app'
 
-app_name = 'mqtt_listener_app'
-
-app = Flask('MqttListenerApp')
+app = Flask(__name__)
+from app import config
+app.config.from_object(config)
+from app import mqtt
 
 # create logger with 'spam_application'
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 # create file handler which logs even debug messages
 fh = logging.FileHandler('application.log')
-fh.setLevel(logging.INFO)
+fh.setLevel(logging.DEBUG)
 
 # create console handler with a higher log level
 ch = logging.StreamHandler()
@@ -85,23 +81,6 @@ def main():
 
     signal.signal(signal.SIGINT, signal_handler)
     logger.debug("======= Application Starting =======")
-    # start topic listeners
-    try:
-        logger.info("Starting Threads")
-        mqttla = MqttListener(mk2_printer_power_topic, app_name + "_pp")
-        mqttla.start()
-
-        mqttlb = MqttListener(mk2_printer_light_topic, app_name + "_pl")
-        mqttlb.start()
-
-        mqttlc = MqttListener(mk2s_printer_power_topic, app_name + "_pp")
-        mqttlc.start()
-
-        mqttld = MqttListener(mk2s_printer_power_topic, app_name + "_pp")
-        mqttld.start()
-
-    except Exception,e:
-        logger.error("Error: unable to start listener threads! %s", str(e))
 
     # launch Flask server
     app.logger.info("Starting app")
