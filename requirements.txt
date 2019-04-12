@@ -1,4 +1,4 @@
-Flask==0.12.2
+flask>=0.12.3
 -e git+https://github.com/MrLeeh/Flask-MQTT.git@9751891f02ba7958719e3e35138c46d6e166805b#egg=Flask_MQTT-origin/HEAD
 Jinja2==2.10.1
 MarkupSafe==1.0
